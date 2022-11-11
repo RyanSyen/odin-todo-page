@@ -5,8 +5,11 @@ import head from '../scripts/generateInterface/head.js';
 import { generateAddTaskPanel } from '../scripts/functions/addTask.js';
 import cancelAddTask from '../scripts/functions/cancelAddTask.js';
 import taskFactory from '../scripts/functions/taskFactory.js';
+import generateProjectModal from '../scripts/generateInterface/projectModal.js'
+
 head();
 home();
+generateProjectModal();
 
 const completeTaskListener = (task) => {
     // listen for complete btn
@@ -27,7 +30,7 @@ const listeners = (() => {
     const main = document.getElementsByTagName('main');
     const addTaskBtn = document.getElementById('addTask');
 
-    const toggleMenuListner = (() => {
+    const toggleMenuListener = (() => {
         toggleMenuBtn.addEventListener('click', (e) => {
             let sidebarStatus = e.target.getAttribute('data-toggleStatus');
             if (sidebarStatus === 'show') {
@@ -46,9 +49,7 @@ const listeners = (() => {
         })
     })();
 
-
-
-    const addTaskListner = (() => {
+    const addTaskListener = (() => {
         addTaskBtn.addEventListener('click', () => {
             // console.log('clicked add task btn')
             let generated = false;
@@ -94,10 +95,32 @@ const listeners = (() => {
     })();
 
 
+    const modalBG = document.getElementById('modalBG');
+    // const modalBG_classlist = modalBG.classList;
+    const modal = document.getElementById('modal');
+    // const modal_classlist = modal.classList;
+    const addProject = document.getElementById('addProject');
 
-    // completeTaskListener();
-    // window.addEventListener('click', (e) => {
-    //     console.log(e.target.id)
-    // })
+    const addProjectListener = (() => {
+        addProject.addEventListener('click', () => {
+            modalBG.classList.add('openModalBackground');
+            modal.classList.add('openModal');
+        });
+
+        const colorPickContainer = document.getElementById('colorPickContainer');
+        const projectColor = document.getElementById('projectColor');
+        colorPickContainer.addEventListener('click', () => {
+            projectColor.click();
+        })
+    })();
+
+    const cancelProjectListener = (() => {
+        const cancelProject = document.getElementById('cancelProjectBtn');
+        cancelProject.addEventListener('click', () => {
+            modalBG.classList.remove('openModalBackground');
+            modal.classList.remove('openModal');
+        })
+    })();
+
 })();
 

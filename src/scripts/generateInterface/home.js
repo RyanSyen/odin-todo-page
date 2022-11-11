@@ -17,7 +17,8 @@ const home = () => {
     sideBarSection_header.appendChild(sideBarSection_header_h2);
     // -- side bar > inbox
     const sideBarSection_inbox = document.createElement('div');
-    sideBarSection_inbox.setAttribute('class', 'sidebar-flex-component');
+    sideBarSection_inbox.setAttribute('class', 'sidebar-flex-component active');
+    sideBarSection_inbox.setAttribute('id', 'inbox-tab');
     // --- side bar > inbox > ion-icons
     const sideBarSection_inbox_ionicons = document.createElement('ion-icon');
     sideBarSection_inbox_ionicons.setAttribute('name', 'albums-outline');
@@ -29,6 +30,7 @@ const home = () => {
     // -- side bar > today
     const sideBarSection_today = document.createElement('div');
     sideBarSection_today.setAttribute('class', 'sidebar-flex-component');
+    sideBarSection_today.setAttribute('id', 'today-tab');
     // --- side bar > today > ion-icons
     const sideBarSection_today_ionicons = document.createElement('ion-icon');
     sideBarSection_today_ionicons.setAttribute('name', 'calendar-number-outline');
@@ -40,6 +42,7 @@ const home = () => {
     // -- side bar > upcoming
     const sideBarSection_upcoming = document.createElement('div');
     sideBarSection_upcoming.setAttribute('class', 'sidebar-flex-component');
+    sideBarSection_upcoming.setAttribute('id', 'upcoming-tab');
     // --- side bar > upcoming > ion-icons
     const sideBarSection_upcoming_ionicons = document.createElement('ion-icon');
     sideBarSection_upcoming_ionicons.setAttribute('name', 'calendar-outline');
@@ -59,6 +62,7 @@ const home = () => {
     // ---- side bar > project > project-header > ion-icons
     const sideBarSection__project_header_ionicons = document.createElement('ion-icon');
     sideBarSection__project_header_ionicons.setAttribute('name', 'add-outline');
+    sideBarSection__project_header_ionicons.setAttribute('id', 'addProject');
     // + append h2 and ion-icons to project-header
     sideBarSection_project_header.append(sideBarSection_project_header_h2, sideBarSection__project_header_ionicons);
     // --- side bar > project > project-list
