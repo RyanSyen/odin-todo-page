@@ -75,6 +75,8 @@ const addTask = (title, description) => {
     // restore add task btn
     const addTaskBtnDiv = document.getElementById('addTask');
     addTaskBtnDiv.style.display = 'flex';
+    // get tasklist
+    const taskList = document.getElementById('taskList');
     // - taskContainer
     const taskContainer = document.createElement('div');
     taskContainer.setAttribute('class', 'taskContainer');
@@ -89,6 +91,7 @@ const addTask = (title, description) => {
     // ---- taskContainer > task > radio button container > radio btn
     const taskRadBtn = document.createElement('input');
     taskRadBtn.setAttribute('class', 'radioBtn');
+    taskRadBtn.setAttribute('id', 'radioBtn');
     taskRadBtn.setAttribute('type', 'radio');
     // + append radio btn to radio btn container
     taskRadBtnContainer.appendChild(taskRadBtn);
@@ -117,10 +120,18 @@ const addTask = (title, description) => {
     editTask.appendChild(editTaskBtn);
     // + append task and edit task to task container
     taskContainer.append(task, editTask);
-    // + append taskContainer to inbox
-    const addTask = document.getElementById('addTask');
-    let parentNode = addTask.parentNode;
-    parentNode.insertBefore(taskContainer, addTask);
+    // + append taskContainer to taskList
+    taskList.appendChild(taskContainer);
+    //     // + append tasklist to inbox
+    // const addTaskElement = document.getElementById('addTask');
+    // let parentNode = addTask.parentNode;
+    // parentNode.insertBefore(taskList, addTaskElement);
 }
 
-export { generateAddTaskPanel, addTask };
+
+
+const setTaskSize = (size) => {
+    taskSize = size;
+}
+
+export { generateAddTaskPanel, addTask, taskSize, setTaskSize };

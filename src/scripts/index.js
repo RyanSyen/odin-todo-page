@@ -2,11 +2,24 @@ import _ from 'lodash';
 import style from '../style.css';
 import home from '../scripts/generateInterface/home.js';
 import head from '../scripts/generateInterface/head.js';
-import { generateAddTaskPanel, addTask } from '../scripts/functions/addTask.js';
+import { generateAddTaskPanel } from '../scripts/functions/addTask.js';
 import cancelAddTask from '../scripts/functions/cancelAddTask.js';
 import taskFactory from '../scripts/functions/taskFactory.js';
 head();
 home();
+
+const completeTaskListener = (task) => {
+    // listen for complete btn
+    const radioBtn = document.querySelectorAll('input[type="radio"]');
+    console.log(radioBtn);
+    Object.values(radioBtn).forEach((btn) => {
+        btn.addEventListener('click', (e) => {
+            let index = e.target.parentElement.parentElement.parentElement.getAttribute('data-index');
+            // console.log(index + 1)
+            task.removeTask(index);
+        })
+    })
+};
 
 const listeners = (() => {
     const toggleMenuBtn = document.getElementById('toggleMenu');
@@ -33,16 +46,18 @@ const listeners = (() => {
         })
     })();
 
+
+
     const addTaskListner = (() => {
         addTaskBtn.addEventListener('click', () => {
-            console.log('clicked add task btn')
+            // console.log('clicked add task btn')
             let generated = false;
             const addTaskContainerPanel = document.getElementById('addTaskContainerPanel');
             if (addTaskContainerPanel != null) {
                 // console.log('add task is created')
                 generated = true;
             } else {
-                console.log('add task is not created')
+                // console.log('add task is not created')
                 generated = false;
             }
             generateAddTaskPanel(generated);
@@ -57,33 +72,30 @@ const listeners = (() => {
             const textarea_description = document.getElementById('textarea_description');
 
             addTaskBtn.addEventListener('click', (e) => {
-                // console.log(textfield_title.value, textarea_description.value);
-
                 if (textfield_title.value && textarea_description.value) {
-                    addTask(textfield_title.value, textarea_description.value);
+                    // addTask(textfield_title.value, textarea_description.value);
 
-                    // get task index
-                    const taskContainer = document.getElementById('taskContainer');
-                    let index = taskContainer.getAttribute('data-index');
                     // factory funcion
-                    taskFactory(index, textfield_title.value, textarea_description.value);
-                    console.log(taskFactory.taskList);
+                    var task = taskFactory(textfield_title.value, textarea_description.value);
+
+                    // add task
+                    task.addTask();
+
                     // reset input field values
                     textfield_title.value = '';
                     textarea_description.value = '';
+
+                    completeTaskListener(task);
                 } else {
                     cancelAddTask();
                 }
-
             })
-
-
-
         });
-
     })();
 
 
+
+    // completeTaskListener();
     // window.addEventListener('click', (e) => {
     //     console.log(e.target.id)
     // })

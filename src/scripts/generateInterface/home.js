@@ -85,6 +85,9 @@ const home = () => {
     // ---- main > inbox > inbox-header > h3
     const main_inbox_header_h3 = document.createElement('h3');
     main_inbox_header_h3.innerText = 'Inbox';
+    // ---- main > inbox > inbox-header > tasklist
+    const main_inbox_header_taskList = document.createElement('div');
+    main_inbox_header_taskList.setAttribute('id', 'taskList');
     // ---- main > inbox > inbox-header > add-task
     const main_inbox_header_addTask = document.createElement('div');
     main_inbox_header_addTask.setAttribute('id', 'addTask');
@@ -101,8 +104,8 @@ const home = () => {
     main_inbox_header_addTask_container.append(main_inbox_header_addTask_container_ionicons, main_inbox_header_addTask_container_span);
     // + append add-task-container to add-task
     main_inbox_header_addTask.appendChild(main_inbox_header_addTask_container);
-    // + append ionicons, h3, add-task to inbox-header
-    main_inbox_header.append(main_inbox_header_ionicons, main_inbox_header_h3, main_inbox_header_addTask);
+    // + append ionicons, h3, tasklist, add-task to inbox-header
+    main_inbox_header.append(main_inbox_header_ionicons, main_inbox_header_h3, main_inbox_header_taskList, main_inbox_header_addTask);
     // --- main > inbox > inbox-content
     const main_inbox_content = document.createElement('div');
     main_inbox_content.setAttribute('id', 'inbox-content');
