@@ -1,0 +1,271 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap');
+
+:root {
+    --active-color: #e0e7ff;
+    --sidebar-background-color: #f5f7ff;
+    --sidebar-header-background-color: #185abd;
+    --special-text: #1f4cff;
+}
+
+html {
+    font-family: 'Roboto', sans-serif;
+    user-select: none;
+}
+
+body {
+    margin: 0;
+}
+
+h2,
+h3 {
+    padding: 0;
+    margin: 0;
+}
+
+main {
+    transition: 1.5s;
+    margin-left: 300px;
+}
+
+ion-icon {
+    font-size: 24px;
+    --ionicon-stroke-width: 25px;
+    padding: 2.5px;
+    cursor: pointer;
+    border-radius: 2.5px;
+}
+
+ion-icon:hover {
+    background-color: var(--active-color);
+}
+
+/* ---------------- side bar elements ----------------*/
+.sidebar-flex-component {
+    display: flex;
+    align-items: center;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.sidebar-flex-component:hover {
+    background-color: var(--active-color);
+}
+
+.active {
+    background-color: var(--active-color);
+}
+
+.sidebar-flex-component>*:first-child {
+    margin-right: 8px;
+}
+
+#sidebar div:nth-child(2)>ion-icon {
+    color: var(--special-text);
+    pointer-events: none;
+}
+
+#sidebar div:nth-child(3)>ion-icon {
+    color: green;
+    pointer-events: none;
+}
+
+#sidebar div:nth-child(4)>ion-icon {
+    color: lightcoral;
+    pointer-events: none;
+}
+
+#sidebar {
+    width: 250px;
+    height: 100%;
+    background-color: var(--sidebar-background-color);
+    padding: 15px 25px;
+    transition: 1.5s;
+    overflow-x: hidden;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+}
+
+.sidebar-btn {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+#project-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 15px 0;
+}
+
+/* ---------------- inbox elements ----------------*/
+#inbox {
+    padding: 15px 25px;
+}
+
+#inbox-header>h3 {
+    margin: 10px 10px 15px 0;
+    font-size: x-large;
+}
+
+/* #inbox-header>div:hover {
+    color: var(--special-text);
+} */
+
+#inbox-header>div:hover>ion-icons {
+    background-color: var(--special-text);
+}
+
+#inbox-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#inbox-content-placeholder-img {
+    width: 500px;
+    height: 500px;
+    pointer-events: none;
+}
+
+#inbox-content-placeholder-text {
+    color: #c0c0c0;
+}
+
+#inbox-content-placeholder-text p:first-child {
+    text-align: center;
+    font-weight: 500;
+    font-style: bold;
+}
+
+#addTask {
+    display: flex;
+    margin-top: 15px;
+}
+
+/* ---------------- add task module ---------------- */
+#addTaskContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+#addTaskContainer>ion-icon {
+    margin-right: 8px;
+}
+
+#addTaskContainer:hover {
+    color: var(--special-text);
+}
+
+#addTaskContainer:hover>ion-icon {
+    background-color: var(--active-color);
+}
+
+#addTaskField {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px 15px;
+}
+
+#textField,
+#textarea_description {
+    border: none;
+    width: 300px;
+}
+
+#textField:focus,
+#textarea_description:focus {
+    outline: none;
+}
+
+.textfield_div {
+    padding: 10px 0px;
+}
+
+textarea {
+    border: none;
+    width: 300px;
+}
+
+.addFormBtns {
+    float: right;
+    margin-top: 10px;
+}
+
+.buttons {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.buttons:hover {
+    background-color: rgba(0, 0, 0, 0.3);
+}
+
+#addFormBtns_addBtn {
+    background-color: #3d6aff;
+    color: #f9f9f9;
+    margin-left: 10px;
+}
+
+#addFormBtns_addBtn:hover {
+    background-color: #0031d6;
+}
+
+/* ---------------- task ----------------*/
+.taskContainer {
+    margin-top: 10px;
+    cursor: pointer;
+    border-radius: 8px;
+    border-bottom: 1px solid rgba(204, 204, 204, 0.4);
+    display: flex;
+    justify-content: space-between;
+}
+
+.taskContainer:hover {
+    background-color: var(--sidebar-background-color);
+}
+
+.task {
+    margin: 5px 0;
+    display: flex;
+
+}
+
+.radioBtnContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.radioBtn {
+    width: 20px;
+    height: 20px;
+    margin: 0;
+}
+
+.taskContent {
+    margin-left: 10px;
+}
+
+.taskTitle {
+    margin: 20px 0 0 0;
+}
+
+.taskDescription {
+    margin: 10px 0 15px 0;
+}
+
+.editTask {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
