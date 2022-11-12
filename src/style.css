@@ -384,6 +384,7 @@ textarea {
     border: 1px solid #ccc;
     border-radius: 5px;
     height: 25px;
+    padding-left: 5px;
 }
 
 #projectColor {
@@ -418,4 +419,14 @@ textarea {
     opacity: 1;
     visibility: visible;
     animation: modal-in 1s;
+}
+
+/* ---------------- add project ---------------- */
+#dot {
+    height: 25px;
+    width: 25px;
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block;
+    margin-right: 8px;
 }

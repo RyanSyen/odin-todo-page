@@ -6,6 +6,7 @@ import { generateAddTaskPanel } from '../scripts/functions/addTask.js';
 import cancelAddTask from '../scripts/functions/cancelAddTask.js';
 import taskFactory from '../scripts/functions/taskFactory.js';
 import generateProjectModal from '../scripts/generateInterface/projectModal.js'
+import projectFactory from '../scripts/functions/projectFactory.js';
 
 head();
 home();
@@ -71,13 +72,15 @@ const listeners = (() => {
             const addTaskBtn = document.getElementById('addFormBtns_addBtn');
             const textfield_title = document.getElementById('textField');
             const textarea_description = document.getElementById('textarea_description');
+            const categorySelection = document.getElementById('categorySelection');
+            const category = document.getElementById('category');
 
             addTaskBtn.addEventListener('click', (e) => {
                 if (textfield_title.value && textarea_description.value) {
                     // addTask(textfield_title.value, textarea_description.value);
 
                     // factory funcion
-                    var task = taskFactory(textfield_title.value, textarea_description.value);
+                    var task = taskFactory(textfield_title.value, textarea_description.value, categorySelection.value);
 
                     // add task
                     task.addTask();
@@ -85,26 +88,26 @@ const listeners = (() => {
                     // reset input field values
                     textfield_title.value = '';
                     textarea_description.value = '';
-
+                    categorySelection.value = 'inbox';
+                    category.style.color = '#000';
                     completeTaskListener(task);
                 } else {
                     cancelAddTask();
                 }
             })
         });
-    })();
+    });
+    addTaskListener();
 
 
-    const modalBG = document.getElementById('modalBG');
-    // const modalBG_classlist = modalBG.classList;
-    const modal = document.getElementById('modal');
-    // const modal_classlist = modal.classList;
+
     const addProject = document.getElementById('addProject');
 
     const addProjectListener = (() => {
+        const project = projectFactory();
         addProject.addEventListener('click', () => {
-            modalBG.classList.add('openModalBackground');
-            modal.classList.add('openModal');
+            project.createProject();
+
         });
 
         const colorPickContainer = document.getElementById('colorPickContainer');
@@ -112,15 +115,31 @@ const listeners = (() => {
         colorPickContainer.addEventListener('click', () => {
             projectColor.click();
         })
-    })();
 
-    const cancelProjectListener = (() => {
+        const addProjectBtn = document.getElementById('addProjectBtn');
+        addProjectBtn.addEventListener('click', () => {
+            const projectName = document.getElementById('projectName');
+            const projectColor = document.getElementById('projectColor');
+            console.log(projectName.value + projectColor.value);
+            let project = projectFactory(projectName.value, projectColor.value);
+            project.addProject();
+            // reset input field values
+            projectName.value = '';
+            projectColor.value = '#1a4eff';
+            // close modal
+            project.removeProject();
+            addTaskListener();
+        })
+
+        // const cancelProjectListener = (() => {
         const cancelProject = document.getElementById('cancelProjectBtn');
         cancelProject.addEventListener('click', () => {
-            modalBG.classList.remove('openModalBackground');
-            modal.classList.remove('openModal');
+            project.removeProject();
         })
+        // })();
     })();
+
+
 
 })();
 

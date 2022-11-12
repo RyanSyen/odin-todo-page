@@ -30,6 +30,7 @@ const generateProjectModal = () => {
     projectNameInput.setAttribute('type', 'text');
     projectNameInput.setAttribute('name', 'projectName');
     projectNameInput.setAttribute('id', 'projectName');
+    projectNameInput.setAttribute('autocomplete', 'off');
     // + append projectNameLabel and projectNameInput to projectNameContainer
     projectNameContainer.append(projectNameLabel, projectNameInput);
     // --- modal > content > projectColorContainer
@@ -69,6 +70,7 @@ const generateProjectModal = () => {
     const addBtn = document.createElement('button');
     addBtn.setAttribute('class', 'buttons');
     addBtn.setAttribute('id', 'addProjectBtn');
+    addBtn.setAttribute('type', 'submit');
     addBtn.innerText = 'Add';
     // + append cancel and add button to btnContainer
     btnContainer.append(cancelBtn, addBtn);

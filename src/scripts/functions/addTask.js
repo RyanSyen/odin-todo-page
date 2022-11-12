@@ -1,3 +1,18 @@
+import projectFactory from '../functions/projectFactory.js';
+
+const project = projectFactory();
+const projectCategories = project.categories;
+
+let categoriesArr = ['inbox'];
+const getCategories = (arr) => {
+    categoriesArr = arr;
+}
+
+let categoryColor = '';
+const getCategoryColor = (color) => {
+    categoryColor = color;
+}
+
 const generateAddTaskPanel = (generated) => {
     // hide inbox content placeholder first
     const contentPlaceholderImg = document.getElementById('inbox-content-placeholder-img');
@@ -41,8 +56,28 @@ const generateAddTaskPanel = (generated) => {
         textarea.setAttribute('placeholder', 'Description');
         // append input text area into textarea_div
         textarea_div.appendChild(textarea);
-        // append both textfield_div and textarea_div into addtaskfield
-        addTaskField.append(textfield_div, textarea_div);
+        // add category selection
+        const category_div = document.createElement('div');
+        category_div.setAttribute('class', 'textfield_div');
+        category_div.setAttribute('id', 'category');
+        // add selection
+        const selection = document.createElement('select');
+        selection.setAttribute('name', 'categories');
+        selection.setAttribute('id', 'categorySelection');
+        // add options
+        categoriesArr.forEach(element => {
+            console.log(element)
+            const option = document.createElement('option');
+            option.setAttribute('value', element);
+            option.innerText = element;
+            // append options to selection
+            selection.appendChild(option);
+        });
+
+        // append selection to category_div
+        category_div.appendChild(selection);
+        // append both textfield_div, textarea_div and category_div into addtaskfield
+        addTaskField.append(textfield_div, textarea_div, category_div);
         // add btn div
         const addFormBtns = document.createElement('div');
         addFormBtns.setAttribute('class', 'addFormBtns');
@@ -68,7 +103,7 @@ const generateAddTaskPanel = (generated) => {
 }
 
 let taskSize = 0;
-const addTask = (title, description) => {
+const addTask = (title, description, category) => {
     // hide add task container
     const addTaskContainerPanel = document.getElementById('addTaskContainerPanel');
     addTaskContainerPanel.style.display = 'none';
@@ -106,8 +141,19 @@ const addTask = (title, description) => {
     const taskContent_p = document.createElement('p');
     taskContent_p.setAttribute('class', 'taskDescription');
     taskContent_p.innerText = description;
-    // + append h4 and p to task content
-    taskContent.append(taskContent_H4, taskContent_p);
+    // ---- taskContainer > task > task content > category
+    const taskContent_category = document.createElement('p');
+    taskContent_category.setAttribute('class', 'taskDescription');
+    taskContent_category.setAttribute('id', 'category');
+    taskContent_category.innerText = category;
+    if (category === 'inbox') {
+        taskContent_category.style.color = '#000';
+    } else {
+        taskContent_category.style.color = categoryColor;
+    }
+
+    // + append h4, p and category to task content
+    taskContent.append(taskContent_H4, taskContent_p, taskContent_category);
     // + append radio btn container and task content to task
     task.append(taskRadBtnContainer, taskContent);
     // --- taskContainer > task > edit task
@@ -134,4 +180,4 @@ const setTaskSize = (size) => {
     taskSize = size;
 }
 
-export { generateAddTaskPanel, addTask, taskSize, setTaskSize };
+export { generateAddTaskPanel, addTask, taskSize, setTaskSize, getCategories, getCategoryColor };

@@ -2,7 +2,7 @@ import { addTask as addTaskToDom } from "../functions/addTask.js"
 import remove from '../functions/removeTask.js';
 
 let taskList = [];
-const taskFactory = (title, description) => {
+const taskFactory = (title, description, category) => {
 
 
 
@@ -30,7 +30,7 @@ const taskFactory = (title, description) => {
 
     // add task
     const addTask = (() => {
-        addTaskToDom(title, description);
+        addTaskToDom(title, description, category);
     });
 
 
